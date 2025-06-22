@@ -158,7 +158,7 @@
     </section>
 
     <section>
-      <h2>Benefits of Adopting DevOps</h2>
+      <h2>Benefits of Adopting DevOpS</h2>
       <ul>
         <li><strong>Faster delivery:</strong> Frequent and stable releases with less downtime.</li>
         <li><strong>Better collaboration:</strong> Dev and Ops work as one team with shared responsibilities.</li>
