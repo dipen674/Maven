@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Compile the code') {
             steps {
-                echo 'We are compiling the code'
+                echo 'packaginng the code'
+                sh 'mvn clean package'
             }
         }
          stage('Unit test') {
