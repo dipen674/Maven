@@ -18,7 +18,7 @@ pipeline {
          stage('Build docker image') {
             steps {
                 echo "Building docker images'"
-                sh 'docker image build -t mytomcatimange:v1 .'
+                sh 'docker image build -t mytomcatimange:$BUILD_NUMBER .'
             }
         }
          stage('Unit test') {
