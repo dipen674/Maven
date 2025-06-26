@@ -4,14 +4,21 @@ pipeline {
     stages {
         stage('Compile the code') {
             steps {
-                echo 'packaginng the code'
+                echo 'packaging the code'
                 sh 'mvn clean package'
             }
             post {
                 success {
-                    echo "Now Archiving the Artifacts...."
+                    echo "Archiving the Artifacts...."
                     archiveArtifacts artifacts: '**/*.war'
                 }
+            }
+        }
+        
+         stage('Build docker image') {
+            steps {
+                echo "Building docker images'"
+                sh 'docker image buile -t mytomcatimange:v1 .'
             }
         }
          stage('Unit test') {
@@ -22,11 +29,6 @@ pipeline {
          stage('Security scan') {
             steps {
                 echo 'Run security scan'
-            }
-        }
-         stage('Build docker image') {
-            steps {
-                echo 'Creating docker image'
             }
         }
         stage('Push image to the registry') {
