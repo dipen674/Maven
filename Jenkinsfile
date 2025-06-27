@@ -28,7 +28,7 @@ pipeline {
          stage('Image scanning with trivy') {
             steps {
                 echo "Scanning image vulneriblity"
-                sh 'trivy image ${mydockerimage}:${BUILD_NUMBER} --format table -o trivy-image-report.html'
+                sh 'trivy image ${mydockerimage}:${BUILD_NUMBER}'
         }
         }
          stage('Pushing docker image to dockerhub') {
