@@ -45,9 +45,9 @@ pipeline {
             steps {
                 echo 'Running a container now'
                 sh '''
-                docker container stop ${mydockerimage}:${BUILD_NUMBER} || true
-                docker container rm ${mydockerimage}:${BUILD_NUMBER} || true
-                docker run -d --name mytomcatapp -p 8081:8081 ${mydockerimage}:${BUILD_NUMBER}
+                docker container stop myapp || true
+                docker container rm myapp || true
+                docker run -d --name myapp -p 8081:8081 ${mydockerimage}:${BUILD_NUMBER}
                 '''
             }
         }
