@@ -47,7 +47,7 @@ pipeline {
                 sh '''
                 docker container stop myapp || true
                 docker container rm myapp || true
-                docker run -d --name myapp -p 8081:8081 ${mydockerimage}:${BUILD_NUMBER}
+                docker run -d --name myapp -p 8089:8080 ${mydockerimage}:${BUILD_NUMBER}
                 '''
             }
         }
