@@ -22,18 +22,22 @@ pipeline {
          stage('Build docker image') {
             steps {
                 echo "Building docker images'"
-                sh 'docker image build -t $mydockerimage:$BUILD_NUMBER .'
+                sh 'docker image build -t ${mydockerimage}:${BUILD_NUMBER} .'
             }
         }
          stage('Image scanning with trivy') {
             steps {
                 echo "Scanning image vulneriblity"
-                sh 'trivy image $mydockerimage:$BUILD_NUMBER'
-            }
+                sh 'trivy image ${mydockerimage}:${BUILD_NUMBER} --format table -o trivy-image-report.html'
         }
          stage('Pushing docker image to dockerhub') {
             steps {
-                echo 'docker push $mydockerimage:$BUILD_NUMBER'
+                echo "pushing image"
+                withDockerRegistry ([credentialsId: 'jenkinsdockercred', url: '']) {
+                    sh '''
+                    docker push $mydockerimage:$BUILD_NUMBER
+                    '''
+                }
             }
         }
         stage('Now running a container ') {
