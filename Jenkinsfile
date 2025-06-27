@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    Environment{
-        mydockerimage=deependrabhatta/jenkins_data
+    environment {
+        mydockerimage = deependrabhatta/jenkins_data
     }
 
     stages {
