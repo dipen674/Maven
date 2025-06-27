@@ -41,9 +41,14 @@ pipeline {
                 }
             }
         }
-        stage('Now running a container ') {
+        stage('Deploy to devenv ') {
             steps {
-                echo 'Pushing image to the registry'
+                echo 'Running a container now'
+                sh '''
+                docker container stop ${mydockerimage}:${BUILD_NUMBER} || true
+                docker container rm ${mydockerimage}:${BUILD_NUMBER} || true
+                docker run -d --name mytomcatapp -p 8081:8080 ${mydockerimage}:${BUILD_NUMBER}
+                '''
             }
         }
     }
