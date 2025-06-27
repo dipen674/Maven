@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    Environment{
+        mydockerimage=deependrabhatta/jenkins_data
+    }
 
     stages {
         stage('Compile the code') {
@@ -18,20 +21,21 @@ pipeline {
          stage('Build docker image') {
             steps {
                 echo "Building docker images'"
-                sh 'docker image build -t mytomcatimage:$BUILD_NUMBER .'
+                sh 'docker image build -t $mydockerimage:$BUILD_NUMBER .'
             }
         }
-         stage('Unit test') {
+         stage('Image scanning with trivy') {
             steps {
-                echo 'Running unit test'
+                echo "Scanning image vulneriblity"
+                sh 'trivy image $mydockerimage:$BUILD_NUMBER'
             }
         }
-         stage('Security scan') {
+         stage('Pushing docker image to dockerhub') {
             steps {
-                echo 'Run security scan'
+                echo 'docker push $mydockerimage:$BUILD_NUMBER'
             }
         }
-        stage('Push image to the registry') {
+        stage('Now running a container ') {
             steps {
                 echo 'Pushing image to the registry'
             }
