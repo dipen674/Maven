@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.dipen</groupId>
-  <artifactId>dipen</artifactId>
+  <artifactId>dipendra</artifactId>
   <packaging>war</packaging>
   <version>1.0.0.0</version>
   <name>dipen Maven Webapp</name>
@@ -19,7 +19,7 @@
   </dependencies>
 
   <build>
-    <finalName>dipen</finalName>
+    <finalName>dipendra_webapp</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
