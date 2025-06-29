@@ -65,4 +65,9 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            echo 'I will always say Hello again!'
+        }
+    }
 }
