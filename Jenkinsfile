@@ -43,11 +43,24 @@ pipeline {
         }
         stage('Deploy to devenv ') {
             steps {
-                echo 'Running a container now'
+                echo 'Running a Development environment'
                 sh '''
                 docker container stop myapp || true
                 docker container rm myapp || true
                 docker run -d --name myapp -p 8089:8080 ${mydockerimage}:${BUILD_NUMBER}
+                '''
+            }
+        }
+        stage('Deploy Production Environment') {
+            steps {
+                timeout(time:5, unit:'DAYS'){
+                input message:'Approve PRODUCTION Deployment?'
+                }
+                echo "Running app on Prod env"
+                sh '''
+                docker stop mymanualdeployapp || true
+                docker rm mymanualdeployapp || true
+                docker run -itd --name mymanualdeployapp -p 8083:8080 $mydockerimage:$BUILD_NUMBER
                 '''
             }
         }
