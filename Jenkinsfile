@@ -100,5 +100,8 @@ pipeline {
     //         subject: 'BUILD FAILED NOTIFICATION', 
     //         to: 'bhattadeependra05@gmail.com'
     //     }
+            always {
+                cleanWs()
+            }
     }
 }
