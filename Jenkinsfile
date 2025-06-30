@@ -66,7 +66,7 @@ pipeline {
     //         }
     //     }
     // }
-    // post {
+    post {
     //      always { 
     //         mail to: 'animeislove1657@gmail.com',
     //         subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) is waiting for input",
