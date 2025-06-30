@@ -7,6 +7,7 @@ pipeline {
 
     stages {
         stage('Compile the code') {
+            agent {label "jenkin_slave"}
             steps {
                 echo 'packaging the code'
                 sh 'mvn clean package'
