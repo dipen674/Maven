@@ -75,6 +75,7 @@ pipeline {
             mail to: 'animeislove1657@gmail.com',
             subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) is waiting for input",
             body: "Please go to ${BUILD_URL} and verify the build"
+            cleanWs()
         }
         success {
             mail bcc: 'dipakbhatt363@gmail.com', 
@@ -103,10 +104,6 @@ pipeline {
             replyTo: 'bhattadeependra05@gmail.com', 
             subject: 'BUILD FAILED NOTIFICATION', 
             to: 'bhattadeependra05@gmail.com'
-        }
-       
-        always {
-            cleanWs()
         }
     }
 }
