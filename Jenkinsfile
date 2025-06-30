@@ -66,7 +66,7 @@ pipeline {
     //         }
     //     }
     // }
-    post {
+    // post {
     //      always { 
     //         mail to: 'animeislove1657@gmail.com',
     //         subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) is waiting for input",
@@ -100,9 +100,9 @@ pipeline {
     //         subject: 'BUILD FAILED NOTIFICATION', 
     //         to: 'bhattadeependra05@gmail.com'
     //    
-            always {
-                cleanWs()
-            }
-        }
+        //     always {
+        //         cleanWs()
+        //     }
+        // }
     }
 }
