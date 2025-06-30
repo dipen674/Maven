@@ -65,6 +65,8 @@ pipeline {
                 sh '''
                 docker stop mymanualdeployapp || true
                 docker rm mymanualdeployapp || true
+                docker image rm ${mydockerimage}:${BUILD_NUMBER} || true
+                docker pull ${mydockerimage}:${BUILD_NUMBER}
                 docker run -itd --name mymanualdeployapp -p 8083:8080 $mydockerimage:$BUILD_NUMBER
                 '''
             }
